@@ -42,6 +42,7 @@ div.gallery {
   background-color: #ffffff;
   float: left;
   width: 180px;
+  opacity: 0.5;
 }
 
 div.gallery:hover {
