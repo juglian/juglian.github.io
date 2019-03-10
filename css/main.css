@@ -7,8 +7,14 @@ body {
     background-repeat: no-repeat;
     margin: 60px auto;
     width: 70%;
+}  
+
+
 ul {
   list-style-type: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -17,9 +23,12 @@ ul {
   font-weight: bold;
 }
 
+
 li {
   float: left;
 }
+
+
 
 li a {
   display: block;
@@ -29,33 +38,39 @@ li a {
   text-decoration: none;
 }
 
+
+
 a:hover:not(.active) {
   background-color: #111;
 }
 
+
+
 .active {
   background-color:#4CAF50;
 }
+
+
 
 h1 {
     font-size: 3em;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
     color: #ffffff;
 }
+
+
 p {
     font-size: 1.5em;
     line-height: 1.4em;
     color: #ffffff;
 }
-footer {
-    border-top: 1px dotted #ffffff;
-    font-size: .8em;
-}
+
 
 ul.posts { 
     margin: 20px auto 40px; 
     font-size: 1.5em;
 }
+
 
 ul.posts li {
     list-style: none;
