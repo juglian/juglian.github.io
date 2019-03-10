@@ -1,5 +1,7 @@
 body {
     background-image: url("cat fur.jpg");
+    background-attachment: fixed;
+    background-position: center; 
     background-color: #ffffff;
     margin: 60px auto;
     width: 70%;
@@ -16,23 +18,23 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
-    color: #A9D371;
+    color: #ffffff;
 }
 a:hover {
     text-decoration: none;
-    color: #73904C;
+    color: #ffffff;
 }
 h1 {
-    font-size: 4em;
+    font-size: 3em;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 p {
     font-size: 1.5em;
     line-height: 1.4em;
-    color: #333;
+    color: #ffffff;
 }
 footer {
-    border-top: 1px dotted #000000;
+    border-top: 1px dotted #ffffff;
     font-size: .8em;
 }
 
