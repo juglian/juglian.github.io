@@ -3,8 +3,8 @@ body {
     background-attachment: fixed;
     background-position: center; 
     background-color: #ffffff;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-size: auto;
     margin: 60px auto;
     width: 70%;
 ul {
