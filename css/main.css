@@ -1,4 +1,6 @@
 body {
+    background-image: url("cat fur.jpg");
+    background-color: #ffffff;
     margin: 60px auto;
     width: 70%;
 }
