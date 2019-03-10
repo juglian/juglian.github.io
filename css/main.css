@@ -31,26 +31,26 @@ li a:hover {
   background-color: #000000;
 }
 
-/* Image gallery */
 
-div.gallery {
-  margin: 5px;
-  background-color: #ffffff;
-  float: left;
-  width: 180px;
-  opacity: 0.5;
-}
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #f1f1f1;
+  padding: 10px;
+    
+    
+    }
 
-div.gallery:hover {
-}
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
 
-div.gallery img {
-  width: 100%;
-  height: auto;
-}
-
-div.desc {
-  padding: 15px;
-  text-align: center;
-  font-family: "Courier New", Courier, monospace;
+    /* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
 }
