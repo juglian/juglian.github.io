@@ -1,10 +1,10 @@
 body {
     background-image: url("cat fur.jpg");
-    background-attachment: fixed;
     background-position: center; 
-    background-color: #ffffff;
-    background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
     margin: 60px auto;
     width: 70%;
 }  
@@ -19,7 +19,6 @@ ul {
 
 li {
   float: left;
-  font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 
 li a {
