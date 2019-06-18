@@ -1,28 +1,306 @@
-<!DOCTYPE html>
-<html>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>The Guitar Tunerizer</title>
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8"/>
+<meta name="description" content="This tool displays possible tunings for any given set of chords."/>
+<meta name="keywords" content="tuning, voicing, guitar, generator, songwriting"/> 
+<link rel="stylesheet" type="text/css" media="screen" href="css.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="jquery-ui-1.10.3.custom.min.css"/>
+<link rel="stylesheet" type="text/css" media="print" href="print.css"/>
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="chordgen.js"></script>
+<link rel="shortcut icon" href="favicon.ico"/>
+</head>
+
+<body>
+
+<div id="colleft">
+
+<form id="chordset" name="chordset" action="?">
+<div id="controls">
+<b>Instrument</b>: <span id="instname">Banjo</span><input name="instrument" id="instrument" value="banjo"/><br/>
+<a href="#" onclick="$('div#instlist').slideToggle('slow')"><b>« more instruments... »</b></a><br/>
+<div id="instlist">
+<ul>	
+<li><a onclick="chInstrument('banjo', true, true)" href="#">Banjo</a></li>
+<li><a onclick="chInstrument('guitar', true, true)" href="#">Guitar</a></li>
+<li><a onclick="chInstrument('ukulele', true, true)" href="#">Ukulele</a></li>
+<li><a onclick="chInstrument('mandolin', true, true)" href="#">Mandolin</a></li>
+<li><a onclick="chInstrument('mandola', true, true)" href="#">Mandola</a></li>
+<li><a onclick="chInstrument('bass', true, true)" href="#">Bass</a></li>
+<div style="text-align:right"><a href="#" onclick="makeInstDef($('input#instrument').val())">make this the default</a>
+</div>
+</ul>
+</div>
+
+
+<b>Tuning</b>&nbsp;
+<input name="tuning" id="tuning" value="g,D,G,B,D"/>
+<br/>
+
+<div id="chordselcontainer">
+<div>
+<b>Chord</b><br/>
+<select name="chord" id="chord" >
+
+	<option value="A" >A</option>
+
+	<option value="A#" >A# Bb</option>
+
+	<option value="B" >B</option>
+
+	<option value="C" >C</option>
+
+	<option value="C#" >C# Db</option>
+
+	<option value="D" >D</option>
+
+	<option value="D#" >D# Eb</option>
+
+	<option value="E" >E</option>
+
+	<option value="F" >F</option>
+
+	<option value="F#" >F# Gb</option>
+
+	<option value="G"  selected="selected">G</option>
+
+	<option value="G#" >G# Ab</option>
+</select>
+
+<span id="qualitybox">
+<select name="quality" id="quality">
+	<option  selected="selected" value="">Major</option>
+	<option  value="m">minor</option>
+	<option  value="7">Dom 7</option>
+	<option  value="maj7">Maj 7</option>
+	<option  value="m7">min 7</option>
+	<option  value="aug">aug</option>
+	<option  value="dim">dim</option>
+	<option  value="sus2">sus2</option>
+	<option  value="sus4">sus4</option>
+	<option  value="5">5 (no 3rd)</option>
+	<option  value="6">6</option>
+	<option  value="m6">m6</option>
+	<option  value="9">9</option>
+	<option  value="m9">m9</option>
+	<option  value="4">4</option>
+	<option  value="m4">m4</option>
+	<option  value="dim7">dim7</option>
+</select>
+</span>
+<span id="qualityna">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?help#cnq" class="newwin">N/A</a>
+</span>
+</div>
+<b>Scale / Multiple Chords</b>
+<br/>
+<select name="scale" id="scale">
+	<option id="single" value="single" selected="selected">Single Chord</option>
+	<option id="chrom" value="chrom">Chromatic (All)</option>
+	<option id="altq" value="altq">All Qualities</option>
+	<option id="ion" value="ion">Major (Ionian) </option>
+	<option id="dor" value="dor">Dorian</option>
+	<option id="phr" value="phr">Phrygian</option>
+	<option id="lyd" value="lyd">Lydian</option>
+	<option id="mix" value="mix">Mixolydian</option>
+	<option id="aeo" value="aeo">Minor (Aeolian)</option>
+	<option id="loc" value="loc">Locrian</option>
+	<option id="moh" value="moh">Harmonic Minor</option>
+</select>
+</div>
+<div id="cposcontainer">
+	<b>Enter Manual Position</b>
+	<input id="cpos" name="cpos" value=""/><br/>
+	(for example, the current chord position is <span id="cposcur" style="font-weight:bold"></span>)
+</div>
+<div class="buttondiv">
+	<input type="submit" id="tune" value="Go!"/>
+	<input type="button" onclick="parseReturn();showChord()" id="tuneopen" value="Open"/>
+</div>
+<div class="buttondiv">
+	<input type="button" onclick="showPrint()" id="printch" value="Print"/>
+	<input type="button" onclick="showHelp()" id="help" value="Help"/>
+</div>
+<div class="buttondiv">
+	<input type="button" onclick="manualChord(false)" id="manual" value="Manual"/>
+	<input type="button" onclick="randomChord()" id="random" value="Random"/>
+</div>
+<div class="buttondiv">
+	<input type="button" onclick="toggleSheet()" id="customsheet" value="Build Custom Sheet"/>
+</div>
+<div>
+<b>Capo Fret</b>&nbsp;
+<select name="capo" id="capo">
+<option value="0" selected="selected">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+</select>	
+<br/>
+<b>Alt. Chords</b>&nbsp;
+<select name="alt" id="alt">
+	<option value="0" selected="selected">0</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+</select>	
+<br/>
+<b>Show Scale</b> <input name="displayscale" id="displayscale" type="checkbox" checked="checked"/>
+<br/>
+<b>Handed:</b> Left <input name="handed" class="handed"  type="radio" value="left" onchange="chHanded()"/> / Right <input name="handed" class="handed"  type="radio" value="right" checked="checked"  onchange="chHanded()"/><br/>
+<div id="advcontainer">
+	<a href="#" onclick="toggleAdvOpt()"><b>« Advanced Options... »</b></a>
+</div>
+
+<div id="advopt">
+	<b>Fret Offset</b>&nbsp;
+	<select name="offset" id="offset">
+			<option value="0" selected="selected">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+		</select>	
+	<br/>
+	<b>Prefer # or b Keys</b>
+	<select name="prefersf" id="prefersf">
+		<option value="" selected="selected"></option>
+		<option value="s">#</option>
+		<option value="f">b</option>
+	</select>
+	<br/>
+	<b>Random</b>
+	<select name="randomize" id="randomize">
+		<option value="c" selected="selected">chord only</option>
+		<option value="t">tuning &amp; chord</option>
+		<option value="it">all</option>
+	</select>
+	<br/>
+	<b>Fix Enharmonic</b> <input name="fixenharm" id="fixenharm" type="checkbox" checked="checked"/>
+	<br/>
+	<b>Reverse Left-Handed</b> <input name="revlh" id="revlh" type="checkbox" unchecked="unchecked" onchange="chHanded()"/>
 	
-	<!-- link to main stylesheet -->
-		<link rel="stylesheet" type="text/css" href="/css/main.css">
-	
-	<head>
-		<title>Juglian</title>
-		
-	</head>
-	<body>
-<ul>
-  <li><a class="active" href="/">home</a></li>
-  <li><a href="/paintings.html">paintings</a></li>
-  <li><a href="/photographs.html">photographs</a></li>
-  <li><a href="/contact.html">contact</a></li>
-  <li><a href="http://oscoowilboo.github.io">ruthie</a></li>
+	<input name="debug" id="debug" type="hidden" value="0"/>
+</div>
+</div>
+
+<h2><a href="#" onclick="$('div#tuninglist').slideToggle('slow')">« Some Tunings... »</a></h2>
+<div id="tuninglist">
+
+<ul class="tunelist">
+	<li></li>
 </ul>
 
-		<section>
-			<article>
-				<p>Hello there!</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/a8Rwz6zBJSE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			</article>
-		</section>
-		
-	</body>
+</div>
+<div id="dyk">
+	<b>Did You Know...</b>&nbsp;&nbsp;&nbsp;You can get the full 12 chords of the scale by using the <b>Scale</b> drop down and selecting <i>Chromatic</i>.
+</div>
+</div>
+</form>
+</div>
+
+<div id="colright">
+
+<div id="colchords">
+
+<div id="greendiv">
+<div id="minihelp">
+	<div style="padding-left:4px;color:#FFFFFF;font-weight:bold;background-color:rgb(128,0,0);">Root</div>
+	<div style="padding-left:4px;color:#FFFFFF;font-weight:bold;background-color:rgb(128,92,92);">2nd</div>
+	<div style="padding-left:4px;color:#FFFFFF;font-weight:bold;background-color:rgb(0,128,0);">3rd</div>
+	<div style="padding-left:4px;color:#FFFFFF;font-weight:bold;background-color:rgb(255,128,0);">4th</div>
+	<div style="padding-left:4px;color:#FFFFFF;font-weight:bold;background-color:rgb(0,0,128);">5th</div>
+	<div style="padding-left:4px;color:#FFFFFF;font-weight:bold;background-color:rgb(0,128,128);">6th</div>
+	<div style="padding-left:4px;color:#FFFFFF;font-weight:bold;background-color:rgb(128,0,128);">7th</div>
+</div>
+
+<div id="introtext">
+	<h1>Theo's Chord Generator</h1>
+	<p style="margin-top:0px;">Welcome to <i>Theo's Chord Generator</i>. The current <b>tuning</b> is in the box at the <i>top left</i> and <b>chords</b> can be selected from the dropdown boxes. The Chord Generator is fully dynamic, meaning that it will accept <i>any chord and any tuning</i>.  For more info see the <a href="?help">Documentation</a>. Also see <a href="?help#tools">more tools</a>...  If you wish to bookmark or share the current chords, use this <a id="statlink" href="">Static Link</a>. <span id="nocust">(this excludes changes made to the <b>Custom Chord Sheet</b>!)</span></p>
+
+	<div id="lhinfo"><p><b>NOTE!</b> In <b>Reverse Left-Handed</b> mode, the tuning (and any manual chord positions) should be entered in the same way the chord appears in the diagramns, i.e. strings from top to bottom.  If you have switched from right handed mode, you will need to manually reverse the tuning entered in the box, otherwise the chord generator will not work as expected!</p></div>
+
+	<div id="nojs" class="warnmsg">
+	<h2>Warning</h2>
+	<p>Your browser does <b>not</b> support <i>JavaScript</i> (or it's not enabled), meaning that the interactive functionality is not supported and you can't select chords using this interface. However, all is not lost. See the <a href="?help#advanced">Documentation</a> for instructions on how to drive the chord generator manually.</p>
+	</div>
+	<div id="warn" class="warnmsg">
+
+	</div>
+
+</div>
+</div>
+
+<div id="printinfo">
+	
+</div>
+
+<div id="progresscontainer">
+	<div id="progressBar"><div></div></div>
+</div>
+<div id="chordscontainer">
+<div>
+<img class="chordimg" id="chordImg1" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg2" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg3" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg4" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg5" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg6" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg7" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg8" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg9" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg10" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg11" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg12" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg13" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg14" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg15" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg16" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg17" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg18" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg19" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg20" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg21" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg22" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg23" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg24" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg25" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg26" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg27" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg28" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg29" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg30" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg31" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg32" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg33" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg34" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg35" src="" alt="" style="display:none"/><img class="chordimg" id="chordImg36" src="" alt="" style="display:none"/></div>
+
+<div>
+<img id="scaleimg" src="" alt="scale image" style="display:none"/>
+</div>
+</div>
+<div class="printhide" id="helpsingle">
+<p>You are currently in <b>Single Chord</b> mode, meaning that only the actual chord you have selected will be shown.  If you wish to display multiple chords, please use the <i>Scale / Multiple Chords</i> menu to select a set of chords to display.  Diatonic chords within various scales are available, as well as the entire Chromatic scale (including major, minor and major 7th chords based on all notes.)  And/or you may wish to see multiple variations / inversions of a single chord; this functionality is available from the <i>Alt. Chords</i> menu.  Although be aware that asking multiple variations of every chord in the scale may take some time to generate and/or load.</p>
+</div>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<div id="footer" class="printhide">
+	<div id="footerleft">
+		<div id="bottombtns">
+				<input type="hidden" name="cmd" value="_s-xclick" />
+				<input type="hidden" name="hosted_button_id" value="WKK3D4Z2PCM9G" />
+				<input id="donatebtn" type="submit" value="Donate" alt="PayPal – The safer, easier way to pay online." />
+				<input id="bugreport" type="button" onclick="reportBug()" value="Report Bug" />
+		</div>
+	</div>
+	<div id="footerright">
+		<div id="authorship">
+			<b>&copy; 2014</b> - <a href="http://tpn.lowtech.org">Theo Parmakis</a>.  Additional design Sol Loreto-Miller.<br/>This tool is <i><a href="?help#copyright">free software</a> (open source)</i> (<b>GNU AGPLv3</b>.)
+		</div>
+	</div>
+</div>
+</form>
+
+</div>
+<div id="colsheet">
+	<div class="printhide" id="sheetinfo">
+	<p><i>Click chords in the left hand sheet and they will appear in this area, so that you can build your own custom chord sheet.  You can drag them around to rearrange them, or double click them to remove. Then just print the page to see your custom sheet!</i></p>
+	<input type="button" value="Add Linebreak" onclick="addLinebreak()"/>
+	<input type="button" value="Clear" onclick="clearSheet()"/>
+	<input type="button" value="Add All" onclick="allToSheet()"/>
+	<input type="button" value="Share" onclick="shareSheet()"/>
+	</div>
+	<div id="sheetchords"></div>
+</div>
+</div>
+
+</body>
+
 </html>
