@@ -263,8 +263,8 @@ function showChord(random) {
 		var tPos = $("input#cpos").val();
 		tPos = tPos.split (',');
 		for (i=0;i<tPos.length;i++) {
-			if (!tPos[i].match (/^[0-9x]{1,2}$/)) {
-				alert ("You cannot enter anything other than numbers in the Chord Position box...");
+			if (!tPos[i].match (/^[0-9]{1,2}$/)) {
+				alert ("You cannot enter anything other that numbers in the Chord Position box...");
 				return (false);
 			}
 		}
@@ -559,7 +559,7 @@ function chInstrument (inst, changeChord, changeTuning) {
 	jQuery.ajax({
 		url: chordgenUrl,
 		type: "get",
-		data: "m=c&instrument=" + escape(inst) + "&json&jmode=i" + ($("input#makeinstdef").is(":checked") ? "&makeInstDef" : ""),
+		data: "m=c&instrument=" + escape(inst) + "&json&jmode=i",
 		dataType: "json",
 		async: false,
 		success: function (data) {
@@ -599,18 +599,4 @@ function progress(percent, $element) {
 
 function reportBug () {
 	window.open("http://tpn.lowtech.org/contact.php");
-}
-
-function makeInstDef(inst) {
-	jQuery.ajax({
-		url: chordgenUrl,
-		type: "get",
-		data: "m=c&instrument=" + escape(inst) + "&json&jmode=i&makeInstDef",
-		dataType: "json",
-		async: false,
-		success: function (data) {
-			alert (inst + " will now be selected next time you visit the page.");
-			$("input#makeinstdef").attr('checked', false);
-		}
-	});
 }
