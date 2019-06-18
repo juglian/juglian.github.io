@@ -24,23 +24,13 @@
 <form id="chordset" name="chordset" action="?">
 <div id="controls">
 <b>Instrument</b>: <span id="instname">Guitar</span><input name="instrument" id="instrument" value="guitar"/><br/>
-<a href="#" onclick="$('div#instlist').slideToggle('slow')"><b>« more instruments... »</b></a><br/>
-<div id="instlist">
-<ul>	
-<li><a onclick="chInstrument('banjo', true, true)" href="#">Banjo</a></li>
-<li><a onclick="chInstrument('guitar', true, true)" href="#">Guitar</a></li>
-<li><a onclick="chInstrument('ukulele', true, true)" href="#">Ukulele</a></li>
-<li><a onclick="chInstrument('mandolin', true, true)" href="#">Mandolin</a></li>
-<li><a onclick="chInstrument('mandola', true, true)" href="#">Mandola</a></li>
-<li><a onclick="chInstrument('bass', true, true)" href="#">Bass</a></li>
-<div style="text-align:right"><a href="#" onclick="makeInstDef($('input#instrument').val())">make this the default</a>
 </div>
 </ul>
 </div>
 
 
 <b>Tuning</b>&nbsp;
-<input name="tuning" id="tuning" value="g,D,G,B,D"/>
+<input name="tuning" id="tuning" value="e,a,d,g,b,e"/>
 <br/>
 
 <div id="chordselcontainer">
