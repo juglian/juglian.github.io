@@ -1,0 +1,87 @@
+body {
+    color:#FFFFFF;
+    background-color:#000000;
+    font-family:Arial,Verdana,Sans-serif;
+    font-size:90%;
+    height:100%;
+}
+
+a		{ color:#FFCC00; text-decoration:underline; } /* local link */
+a.ext		{ color:#FFCC00; text-decoration:underline; } /* external link */
+a:hover		{ color:#FF3333; }
+/* a:visited	{ color:#CC00FF; } */
+
+h1		{ color:#FF7F00;margin:2px; } /* homepage and index pages' titles */
+h2		{ color:#00FF00; } /* article titles */
+h3		{ color:#00FFCC; } /* sub-headings and sections */
+
+em		{ color:#FF3333; font-style:normal; font-weight:bold; text-decoration:none; }
+
+img		{ border:none; }
+/*img.photograph	{ vertical-align:middle; margin-right:2px;margin-left:2px;margin-bottom:4px;margin-top:4px; }*/
+img.photograph	{ vertical-align:middle; margin:4px; }
+img.imgleft	{ float:left; margin-right:16px; margin-bottom:16px; margin-top:16px; }
+img.imgright	{ float:right; margin-left:16px; margin-bottom:16px; margin-top:16px; }
+
+
+/*table		{ table-layout:fixed; } */
+
+div.main	{ margin-left:75px; margin-right:75px; margin-top:16px; }
+div.mainbody	{ overflow:auto; }
+
+/* categories appear one pages which contain different distinct groups of items. */
+div.category	{ margin-bottom:16px;margin-top:16px;padding:0px; /*border: 2px #BBBBBB solid;*/ overflow:auto; }
+div.category-title	{ font-size:1.95em; font-weight:bold; color:#00FF00; }
+div.sitemapdir	{ font-size:1.5em; font-weight:bold; color:#00FF00; margin-top:8px; }
+div.sitemapdoc	{ font-size:1.15em; font-weight:bold; color:#00FF00; margin-left:4px; margin-bottom:4px;}
+
+/* content is actual items, either on the page or linked from the page. */
+div.content	{ margin-bottom:16px;margin-top:16px;padding:8px; border: 1px #BBBBBB solid; overflow:auto; }
+div.content-title	{ font-size:1.5em; font-weight:bold; color:#00FF00; }
+div.content-img-right	{ float:right; margin-left:8px; margin-bottom:8px; }
+div.content-img-left	{ float:left; margin-right:8px; margin-bottom:8px; }
+div.content-embed	{ padding:8px; margin-right:8px; float:left; }
+
+/* included navigation bar */
+div.navlinks	{ font-size:1.25em; font-weight:bold; }
+div.navmain	{ overflow:auto;  margin-bottom:8px;}
+div.navimg	{ float:left; margin-right:8px; }
+
+span.dlclip	{ font-weight:bold; margin:12px; }
+
+/* elements relating to the solely construction of the homepage */
+div.homephoto	{ text-align:center;width:375px;float:left; }
+div.homenav	{ padding-top:16px; font-size:1.95em; font-weight:bold;}
+div.homeintro	{ margin-bottom:8px;margin-top:8px; border: 1px #BBBBBB solid; padding:8px; height:40px; }
+div.homenews	{ margin-bottom:8px;margin-top:8px; border: 1px #BBBBBB solid; padding:8px; overflow:auto; }
+div.homedecal	{ text-align:right; font-size:0.80em; margin-top:24px; }
+div.hometitle	{ background-color:#000000; }
+div.printonly	{ height:0px;width:0px;visibility:hidden;overflow:hidden; }
+
+ul {padding-left:20px;}
+
+div.dllink {
+	font-size:1.15em;
+	font-weight:bold;
+	text-align:center;
+}
+
+/* form */
+input { background-color:#222222; color:#FFFFFF; border: 1px #00FF00 solid; }
+textarea { background-color:#222222; color:#FFFFFF; border: 1px #00FF00 solid; }
+select { background-color:#222222; color:#FFFFFF; border: 1px #00FF00 solid; }
+hr { color:#FFFFFF; border: 1px #00FF00 solid; }
+
+span.tuningADADE {color:#66FF00;}
+span.tuningAEADE {color:#CD7F32;}
+span.tuningAEABE {color:#FFD700;}
+span.tuningFsDGAD {color:#BDB76B;}
+span.tuningAEACsE {color:#7777FF;}
+span.tuningAAACsE {color:#2266FF;}
+span.tuningGDGDE {color:#FF2266;}
+span.tuningGCGCE {color:#DFFF00;}
+span.tuningGEGDE {color:#FF0000;}
+span.tuningADADD {color:#11FFBB;}
+span.tuningFsDADD {color:#00FFFF;}
+span.tuningFsDFsAD {color:#5A7F1F;}
+span.tuningFsBEAD {color:#915F6D;}
