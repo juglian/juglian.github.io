@@ -1,0 +1,83 @@
+@page { 
+	margin:2cm 1cm 2cm 1cm;
+}
+a, a:visited {color:#008866;}
+a.link, a.link:visited {color:#008866;text-decoration:underline;font-weight:bold;cursor:pointer;}
+a.linkn, a.linkn:visited {color:#008866;text-decoration:underline;font-weight:bold;cursor:pointer;white-space:pre;}
+body {font-family:Arial,Helvetica,DejaVu Sans,sans-serif,sans;font-size:0.85em;background-color:#F5FFE1;padding:0px;margin:0px;}
+div.ileft { float:left; padding:4px; margin-right: 16px; margin-top:8px; margin-bottom: 16px; background-color:#FFF;border: 1px dashed #000;}
+div.iright { float:right; padding:4px; margin-left: 16px; margin-top:8px; margin-bottom: 16px; background-color:#FFF;border: 1px dashed #000;}
+/*div.rightsectout { position:fixed; right:0px; top:12px; padding:0px 12px 8px 8px; background-color:#F5FFE1; width:428px; }*/
+div.rightsectout { float:right; padding:0px 6px 8px 8px; margin:0px 0px 0px 8px; background-color:#F5FFE1; width:436px; }
+div.rightsectin { background-color:#FFF; padding:4px; }
+div.rightsectin img { white-space:pre; }
+/*div.tensionsectioncont { min-width:420px;}*/
+div.centerfloat { margin-left:auto; margin-right:auto;  }
+div.section { margin:12px 6px 12px 6px; padding:4px 8px 4px 8px; background-color:#deb; min-width:420px; }
+div.sectionx { margin:-12px 6px 12px 6px; padding:4px 8px 4px 8px; background-color:#ada; min-width:420px; border-top:2px #000 dashed; border-bottom:2px #000 dashed; overflow:auto; }
+div.sectionfloat { margin:6px 6px 6px 6px; padding:4px 4px 4px 4px; background-color:#deb; overflow:hidden; float:left; }
+div.sectionfloat div.extra { border-top: 2px solid black; padding: 6px; padding-top:4px; background-color:#cda; }
+h2 {margin-bottom:8px;}
+div.expandlink {text-align:center;font-size:1.2em;margin:4px;}
+div.expandlink a:hover {color:#880;}
+div.content { max-width: 1000px; margin-left:auto; margin-right:auto; padding-left:6px; padding-right:6px; }
+div.toollink { float:left; border:2px dashed #000; padding:2px; text-align:center; background-color:#F5FFE1; margin: 2px; width:220px; height:180px; }
+div.toollink a { font-size: 1.40em; }
+
+div.presetcont {margin:4px 4px 4px 4px; padding:4px 4px 4px 4px; background-color:#deb; overflow:hidden;float:left;font-weight:bold;text-align:center;}
+
+div.testimonial {border:2px dashed; background-color:#beb;max-width:40%;padding:8px;margin:16px;float:left;}
+
+/*div#stats { max-width:436px; text-align:right; }*/
+
+/*div#stats {border-top:1px solid #000;}*/
+
+/*
+div#tuninged {
+	max-width:530px;
+}
+*/
+
+div#tuninged input[type="button"] {
+	font-weight:bold;
+	width:22px;
+}
+
+input.copybtn {
+}
+
+input.delbtn {
+	color:red;
+}
+
+input.eqbtn {
+	color:darkgreen;
+}
+
+input.gtbtn {
+	color:blue;
+}
+
+div#tuninged * {
+	font-size:9pt;
+}
+
+/*div#tuninged div {
+	transform: scale(0.8);
+	
+}*/
+
+div#smatcont {width:268px;float:right;text-align:center;}
+
+img.instimg { margin:6px; white-space:pre; }
+
+a#toggleted {float:right;}
+
+div.nojs { }
+div.jsonly { display:none; }
+
+hr { border: 0; height: 1px; background: #000; }
+
+div.xx {float:right; text-align:center; font-size:24px; height:32px; width:32px; border-radius:50%; background-color:#A00;font-weight:bold; line-height:32px;}
+div.xx a {color:#FFF; cursor:pointer; }
+div.xx a:hover {color:#FF0; cursor:pointer; }
